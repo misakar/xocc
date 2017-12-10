@@ -1,0 +1,12 @@
+begin:
+    a := 0;
+    if (a + 2 * a > 10) then:
+        a := 100;
+        if (a - 2 / a > 10) then:
+            a := 150;
+    else if (a > 10) then:
+        a := 250;
+    else:
+        a := 20;
+        a := 10 + (a / 10);
+end;
