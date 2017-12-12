@@ -33,10 +33,10 @@ void xosyntax(WORD* srcwords)
       Statements(srcwords, &cursor);
     }
     else
-    { fprintf(stderr, "[xosyntax:17] Error\n"); }
+    { fprintf(stderr, "[xosyntax:':'] Error\n"); }
   }
   else
-  { fprintf(stderr, "[xosyntax:1] Error\n"); }
+  { fprintf(stderr, "[xosyntax:'begin'] Error\n"); }
 
 
   if (srcwords[cursor].typenum == 6)  // end
@@ -48,10 +48,10 @@ void xosyntax(WORD* srcwords)
       printf("[xosyntax:25] Success\n");
     }
     else
-    { fprintf(stderr, "[xosyntax:25] Error\n"); }
+    { fprintf(stderr, "[xosyntax:';'] Error\n"); }
   }
   else
-  { fprintf(stderr, "[xosyntax:6] Error\n"); }
+  { fprintf(stderr, "[xosyntax:'end'] Error\n"); }
 }
 
 void Statements(WORD* srcwords, int* cursor)
@@ -65,9 +65,6 @@ void Statements(WORD* srcwords, int* cursor)
     // 调用语句分析程序
     Statement(srcwords, cursor);
   }
-  // else
-  // { fprintf(stderr, "[Statements:25] Error\n"); }
-  // }
 }
 
 void Statement(WORD* srcwords, int* cursor)
@@ -103,13 +100,13 @@ void Assignment(WORD* srcwords, int* cursor)
          // 语法程序正确
       }
       else
-      { fprintf(stderr, "[Assignment:25] Error\n"); }
+      { fprintf(stderr, "[Assignment:';'] Error\n"); }
     }
     else
-    { fprintf(stderr, "[Assignment:18] Error\n"); }
+    { fprintf(stderr, "[Assignment:':='] Error\n"); }
   }
   else
-  { fprintf(stderr, "[Assignment:10] Error\n"); }
+  { fprintf(stderr, "[Assignment:'l(l|d)*'] Error\n"); }
 }
 
 void Condition(WORD* srcwords, int* cursor)
@@ -134,17 +131,19 @@ void Condition(WORD* srcwords, int* cursor)
             ConditionStatements(srcwords, cursor);
           }
           else
-          { fprintf(stderr, "[Condition:17] Error\n"); }
+          { fprintf(stderr, "[Condition:':'] Error\n"); }
         }
         else
-        { fprintf(stderr, "[Condition:3] Error\n"); }
+        { fprintf(stderr, "[Condition:'then'] Error\n"); }
        }
        else
-       { fprintf(stderr, "[Condition:27] Error\n"); }
+       { fprintf(stderr, "[Condition:')'] Error\n"); }
     }
     else
-    { fprintf(stderr, "[Condition:26] Error\n"); }
+    { fprintf(stderr, "[Condition:'('] Error\n"); }
   }
+  else
+  { fprintf(stderr, "[Condition:'if'] Error\n"); }
 }
 
 void ConditionStatements(WORD* srcwords, int* cursor)
@@ -165,7 +164,7 @@ void ConditionStatements(WORD* srcwords, int* cursor)
       Statements(srcwords, cursor);
     }
     else
-    { fprintf(stderr, "[ConditionStatement:2] Error\n"); }
+    { fprintf(stderr, "[ConditionStatement:'if, :'] Error\n"); }
   }
   else
   {
@@ -232,8 +231,8 @@ void Factor(WORD* srcwords, int* cursor)
       (*cursor)++;
     }
     else
-    { fprintf(stderr, "[Factor:27] Error\n"); }
+    { fprintf(stderr, "[Factor:')'] Error\n"); }
   }
   else
-  { fprintf(stderr, "[Factor:26] Error\n"); }
+  { fprintf(stderr, "[Factor:'('] Error\n"); }
 }
